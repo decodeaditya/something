@@ -16,7 +16,7 @@ export const Footer = () => {
                         <p className="text-2xl font-black italic tracking-tighter uppercase text-white">
                             INDIA THAT IS BHARAT
                         </p>
-                        <p className="text-sm normal-case italic text-zinc-500 max-w-xs leading-relaxed">
+                        <p className="text-sm normal-case italic text-zinc-500 leading-relaxed">
                             A digital fortress dedicated to documenting systemic failure and demanding accountability. The land of martyrs deserves a legacy of justice.
                         </p>
                         <div className="flex justify-center md:justify-start gap-6">
@@ -31,7 +31,7 @@ export const Footer = () => {
                         <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.4em] mb-2">Navigation</p>
                         <button onClick={() => navigate('/')} className="text-zinc-400 hover:text-orange-500 text-sm font-bold italic uppercase transition-colors">War_Room</button>
                         <button onClick={() => navigate('/about')} className="text-zinc-400 hover:text-orange-500 text-sm font-bold italic uppercase transition-colors">Manifesto</button>
-                        <button onClick={() => navigate('/archive')} className="text-zinc-400 hover:text-orange-500 text-sm font-bold italic uppercase transition-colors">The_Dossier</button>
+                        <button onClick={() => navigate('/archive')} className="text-zinc-400 hover:text-orange-500 text-sm font-bold italic uppercase transition-colors">Matters Archive</button>
                     </div>
 
                     {/* CONNECT & DEV MESSAGE */}

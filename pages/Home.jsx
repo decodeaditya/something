@@ -26,7 +26,7 @@ export default function DigitalWarRoom() {
             <AnimatePresence mode="wait">
                 <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                     {featuredCase && (
-                        <section className="relative h-screen w-full overflow-hidden flex items-end">
+                        <section className="relative h-dvh w-full overflow-hidden flex items-end">
                             <motion.img 
                                 initial={{ scale: 1.1, filter: 'grayscale(100%) brightness(0.2)' }}
                                 animate={{ scale: 1, filter: 'grayscale(100%) brightness(0.35)' }}
@@ -67,13 +67,13 @@ export default function DigitalWarRoom() {
                             <div className="flex items-center gap-4">
                                 <Clock className="animate-pulse" size={24} strokeWidth={3} />
                                 <div className="text-left">
-                                    <p className="font-black italic uppercase text-lg leading-tight">System Update Notice</p>
-                                    <p className="text-sm font-bold opacity-80 uppercase tracking-tighter">New featured cause every interval. Stay vigilant.</p>
+                                    <p className="font-black italic uppercase text-lg leading-tight">Something Important</p>
+                                    <p className="text-sm font-bold opacity-80 uppercase tracking-tighter">New featured cause every day/week. Stay vigilant and Participate.</p>
                                 </div>
                             </div>
                             <div className="hidden md:block h-8 w-[1px] bg-black/20" />
-                            <p className="text-[10px] font-black tracking-[0.4em] uppercase border-2 border-black px-4 py-2">
-                                Live_Feed_Active
+                            <p className="text-[10px] font-black  uppercase border-2 border-black px-4 py-2">
+                                {featuredCase ? `Current Featured Case: ${featuredCase.name}` : 'No Featured Case At The Moment'}
                             </p>
                         </div>
                     </section>
@@ -82,14 +82,14 @@ export default function DigitalWarRoom() {
                     <section className="bg-zinc-950 border-b border-white/5 py-8 px-6 relative z-20 backdrop-blur-md">
                         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
                             <div className="flex items-center gap-4 group">
-                                <Activity size={20} className="text-green-500 animate-pulse" />
+                                <Activity size={20} className="text-green-500 animate-pulse hidden md:block"/>
                                 <p className="text-sm md:text-base italic text-zinc-400 max-w-lg leading-snug">
                                     A decentralized archive of justice denied — dedicated to the families left behind by systemic failure.
                                 </p>
                             </div>
                             
                             <div className="flex items-center gap-4">
-                                <HelpCircle size={18} className="text-orange-500" />
+                               
                                 <button 
                                     onClick={() => navigate('/about')} 
                                     className="relative group overflow-hidden border border-orange-600/30 px-6 py-3 rounded-none"

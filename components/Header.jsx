@@ -21,9 +21,9 @@ export const Header = () => {
                 </div>
 
                 <div className="hidden lg:flex gap-10 text-[18px] font-bold">
-                    <button onClick={() => navigate('')} className={route.page === 'home' ? 'text-orange-500' : 'text-zinc-500 hover:text-white'}>WAR ROOM</button>
-                    <button onClick={() => navigate('about')} className={route.page === 'about' ? 'text-white-500' : 'text-zinc-500 hover:text-white'}>MANIFESTO</button>
-                    <button onClick={() => navigate('archive')} className={route.page === 'archive' ? 'text-green-500' : 'text-zinc-500 hover:text-white'}>DOSSIER ARCHIVE</button>
+                    <button onClick={() => navigate('')} className={route.page === 'home' ? 'text-orange-500' : 'text-zinc-500 hover:text-white'}>War Room</button>
+                    <button onClick={() => navigate('about')} className={route.page === 'about' ? 'text-white-500' : 'text-zinc-500 hover:text-white'}>Manifesto</button>
+                    <button onClick={() => navigate('archive')} className={route.page === 'archive' ? 'text-green-500' : 'text-zinc-500 hover:text-white'}>Matters Archive</button>
                 </div>
 
                 <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden text-orange-600">
@@ -37,7 +37,7 @@ export const Header = () => {
                     <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} className="fixed inset-0 bg-black z-[105] flex flex-col justify-center p-12 gap-6">
                         <button onClick={() => { navigate(''); setMenuOpen(false) }} className="text-4xl font-black italic text-left text-white">WAR_ROOM</button>
                         <button onClick={() => { navigate('about'); setMenuOpen(false) }} className="text-4xl font-black italic text-left text-white">MANIFESTO</button>
-                        <button onClick={() => { navigate('archive'); setMenuOpen(false) }} className="text-4xl font-black italic text-left text-white">DOSSIER ARCHIVE</button>
+                        <button onClick={() => { navigate('archive'); setMenuOpen(false) }} className="text-4xl font-black italic text-left text-white">ARCHIVE</button>
                         <button onClick={() => setMenuOpen(false)} className="mt-10 text-orange-600 flex items-center gap-2 tracking-widest"><X /> CLOSE</button>
                     </motion.div>
                 )}
