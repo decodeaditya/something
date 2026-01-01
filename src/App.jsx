@@ -5,6 +5,7 @@ import { Manifesto } from '../pages/Manifesto'
 import { Header } from '../components/Header'
 import CasePage from '../pages/CasePage'
 import ScrollToTop from '../components/ScrollToTop'
+import CaseArchive from '../pages/AllCasesArchive'
 
 export const App = () => {
 
@@ -17,6 +18,7 @@ export const App = () => {
         <Route path="/about" element={<Manifesto />} />
         <Route path="/case/:slug" element={<CasePage />} />
         <Route path="*" element={<DigitalWarRoom />} />
+        <Route path="/archive" element={<CaseArchive />} />
       </Routes>
       <Footer />
       <ScrollToTop />
