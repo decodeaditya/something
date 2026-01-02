@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import {
     X, Menu,
     Fingerprint,
-    Activity
 } from 'lucide-react';
 
 export const Header = () => {

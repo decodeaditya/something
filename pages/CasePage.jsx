@@ -17,55 +17,37 @@ const CasePage = () => {
         window.location.href = `mailto:${activeCase.authorityEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     };
 
-   const handleShare = async () => {
+    const handleShare = async () => {
+        const shareData = {
+            title: `Justice for ${activeCase.name}`,
+            text: `I just read about the "${activeCase.name}" case on the India Unchained. We need to Speak Up.`,
+            url: window.location.href,
+        };
         try {
-            const response = await fetch(activeCase.img);
-            const blob = await await response.blob();
-            const file = new File([blob], 'evidence.jpg', { type: 'image/jpeg' });
-
-            const shareData = {
-                title: `Justice for ${activeCase.name} | India Unchained`,
-                text: `I just read about the "${activeCase.name}" case on India Unchained. We need to spread awareness. Help us break the silence.`,
-                url: window.location.href,
-                files: [file], // This shares the actual image file
-            };
-
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            if (navigator.share) {
                 await navigator.share(shareData);
             } else {
                 await navigator.clipboard.writeText(window.location.href);
-                alert("Link copied to clipboard!");
-            }
-        } catch (err) {
-            // Fallback if image fetch fails
-            navigator.share({
-                title: `Justice for ${activeCase.name} | India Unchained`,
-                text: `Help spread awareness for ${activeCase.name}.`,
-                url: window.location.href,
-            }).catch(() => {
-                navigator.clipboard.writeText(window.location.href);
                 alert("Link copied!");
-            });
-        }
+            }
+        } catch (err) { console.log("Error sharing:", err); }
     };
 
     return (
-        <motion.div 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             className="bg-[#080808] min-h-screen text-white selection:bg-orange-600 pb-20"
         >
-            {/* 1. TRICOLOR ACCENT BAR (Pinned to Top) */}
             <div className="fixed top-0 left-0 w-full h-1.5 flex z-[100]">
-                <div className="h-full w-1/3 bg-[#FF671F]" /> 
-                <div className="h-full w-1/3 bg-white" />      
-                <div className="h-full w-1/3 bg-[#046A38]" /> 
+                <div className="h-full w-1/3 bg-[#FF671F]" />
+                <div className="h-full w-1/3 bg-white" />
+                <div className="h-full w-1/3 bg-[#046A38]" />
             </div>
 
-            {/* 3. MAIN CONTENT (Increased padding-top to prevent overlap) */}
             <main className="max-w-7xl mx-auto px-6 pt-32 ">
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
-                    
+
                     {/* LEFT COLUMN */}
                     <div className="lg:col-span-8">
                         <header className="mb-12">
@@ -75,41 +57,38 @@ const CasePage = () => {
                                 </span>
                                 <div className="h-[1px] flex-1 bg-zinc-800" />
                             </div>
-                            
+
                             <h1 className="text-5xl md:text-8xl font-black italic tracking-tighter uppercase leading-[0.85] mb-6">
                                 {activeCase.name}
                             </h1>
-                            
+
                             <p className="text-xl md:text-2xl font-bold text-zinc-400 uppercase tracking-tight max-w-2xl leading-tight italic">
                                 {activeCase.headline}
                             </p>
                         </header>
 
-                        {/* COLORED IMAGE */}
                         <div className="relative mb-14 overflow-hidden border border-white/10 shadow-2xl">
-                            <img 
-                                src={activeCase.img} 
-                                alt={activeCase.name} 
-                                className="w-full h-auto object-cover max-h-[550px]" 
+                            <img
+                                src={activeCase.img}
+                                alt={activeCase.name}
+                                className="w-full h-auto object-cover max-h-[550px]"
                             />
                         </div>
 
-                        {/* SUMMARY */}
                         <section className="mb-16">
                             <div className="border-l-8 border-orange-600 pl-8 py-2">
                                 <h3 className="text-xs font-black text-orange-600 tracking-[0.4em] mb-4">The Incident</h3>
                                 <p className="text-2xl md:text-4xl italic text-zinc-100 tracking-tighter font-bold capitalize leading-tight">
-    {activeCase.summary}
-</p>
+                                    {activeCase.summary}
+                                </p>
                             </div>
                         </section>
 
-                        {/* FULL STORY BUTTON */}
                         <div className="mb-20">
-                            <a 
-                                href={activeCase.newsLink} 
-                                target="_blank" 
-                                rel="noreferrer" 
+                            <a
+                                href={activeCase.newsLink}
+                                target="_blank"
+                                rel="noreferrer"
                                 className="flex items-center justify-between bg-white text-black px-10 py-8 group hover:bg-green-700 hover:text-white transition-all duration-300"
                             >
                                 <div className="flex items-center gap-6">
@@ -120,7 +99,6 @@ const CasePage = () => {
                             </a>
                         </div>
 
-                        {/* BNS SECTION (BIG TEXT) */}
                         <div className="pt-16 border-t border-zinc-900 grid md:grid-cols-2 gap-12">
                             <div className="space-y-6">
                                 <h4 className="text-orange-500 text-xs font-black uppercase tracking-widest flex items-center gap-2 italic">
@@ -145,11 +123,9 @@ const CasePage = () => {
                         </div>
                     </div>
 
-                    {/* SIDEBAR */}
                     <aside className="lg:col-span-4">
                         <div className="lg:sticky lg:top-32 space-y-10">
-                            
-                            {/* DEMAND BOX */}
+
                             <div className="bg-white text-black p-10 shadow-[15px_15px_0px_0px_rgba(234,88,12,1)]">
                                 <h3 className="text-5xl font-black italic uppercase leading-[0.75] mb-6 tracking-tighter">
                                     Speak <br /> Up
@@ -161,10 +137,10 @@ const CasePage = () => {
                                     onClick={sendDemandEmail}
                                     className="w-full bg-black text-white p-6 flex items-center justify-between group hover:bg-orange-600 transition-all active:scale-95"
                                 >
-                                    <span className="font-black italic uppercase text-xl">Send Mail</span> 
+                                    <span className="font-black italic uppercase text-xl">Send Mail</span>
                                     <Mail size={24} className="group-hover:translate-x-1 transition-transform" />
                                 </button>
-                                
+
                                 <div className="mt-10 flex h-2 gap-1">
                                     <div className="bg-[#FF671F] flex-1" />
                                     <div className="bg-zinc-200 flex-1" />
@@ -172,8 +148,7 @@ const CasePage = () => {
                                 </div>
                             </div>
 
-                            {/* SHARE */}
-                            <button 
+                            <button
                                 onClick={handleShare}
                                 className="w-full border-4 border-orange-600 p-8 flex items-center justify-between text-orange-600 hover:bg-orange-600 hover:text-white transition-all group"
                             >

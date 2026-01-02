@@ -19,7 +19,6 @@ export default function CaseArchive() {
         <div className="bg-[#050505] min-h-screen text-white pt-32 pb-20 px-6">
             <div className="max-w-7xl mx-auto">
                 
-                {/* ARCHIVE HEADER */}
                 <header className="mb-16 border-b border-zinc-900 pb-12">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
                         <div>
@@ -38,7 +37,6 @@ export default function CaseArchive() {
                     </div>
                 </header>
 
-                {/* SEARCH & FILTER BAR */}
                 <div className="sticky top-24 z-30 bg-black/80 backdrop-blur-md border border-zinc-800 p-2 mb-16 flex flex-col md:flex-row gap-2">
                     <div className="relative flex-1">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
@@ -53,7 +51,6 @@ export default function CaseArchive() {
                     
                 </div>
 
-                {/* RESULTS GRID */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <AnimatePresence mode='popLayout'>
                         {filteredCases.map((item) => (
@@ -62,7 +59,6 @@ export default function CaseArchive() {
                     </AnimatePresence>
                 </div>
 
-                {/* EMPTY STATE */}
                 {filteredCases.length === 0 && (
                     <div className="py-40 text-center border border-dashed border-zinc-800">
                         <Target className="mx-auto text-zinc-800 mb-6" size={48} />

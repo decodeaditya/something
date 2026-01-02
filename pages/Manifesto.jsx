@@ -18,7 +18,7 @@ export const Manifesto = () => {
         exit={{ opacity: 0 }}
         className="min-h-screen bg-[#050505] text-white selection:bg-orange-600 relative overflow-hidden mt-20"
       >
-        {/* FIXED BACKGROUND: POSITIONS ARE NOW TRAPPED */}
+
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none select-none z-0">
           <div className="absolute top-[10%] -left-[10%] text-[30vw] font-black italic leading-none rotate-12 whitespace-nowrap">
             BHARAT
@@ -28,10 +28,8 @@ export const Manifesto = () => {
           </div>
         </div>
 
-        {/* MAIN CONTENT CONTAINER */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-32 relative z-10">
           
-          {/* 1. HEADER - FONT SIZE ADJUSTED FOR MOBILE */}
           <motion.div {...fadeInUp} className="mb-24 md:mb-40">
             <div className="flex items-center gap-4 mb-6 opacity-50">
               <div className="h-px w-8 md:w-12 bg-orange-600" />
@@ -42,7 +40,6 @@ export const Manifesto = () => {
             </h1>
           </motion.div>
 
-          {/* 2. PHILOSOPHY GRID */}
           <div className="grid lg:grid-cols-12 gap-16 md:gap-24 mb-32 md:mb-56">
             <motion.div 
               {...fadeInUp} 
@@ -75,7 +72,6 @@ export const Manifesto = () => {
             </motion.div>
           </div>
 
-          {/* 3. OPERATIONAL LOGIC */}
           <motion.section 
             {...fadeInUp}
             transition={{ delay: 0.6 }}
@@ -106,7 +102,6 @@ export const Manifesto = () => {
             </div>
           </motion.section>
 
-          {/* 4. FOOTER / RETURN */}
           <motion.div 
             {...fadeInUp}
             transition={{ delay: 0.8 }}

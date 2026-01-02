@@ -22,7 +22,6 @@ export default function DigitalWarRoom() {
     return (
         <div className="bg-[#050505] text-white selection:bg-orange-600 overflow-x-hidden relative">
             
-            {/* 1. HERO SECTION */}
             <AnimatePresence mode="wait">
                 <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                     {featuredCase && (
@@ -61,7 +60,6 @@ export default function DigitalWarRoom() {
                         </section>
                     )}
 
-                    {/* 2. SYSTEM NOTICE STRIP (ORANGE) */}
                     <section className="bg-orange-600 text-black py-6 px-6 relative z-20 shadow-2xl">
                         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                             <div className="flex items-center gap-4">
@@ -78,7 +76,6 @@ export default function DigitalWarRoom() {
                         </div>
                     </section>
 
-                    {/* 3. THE MANIFESTO STRIP (RESTORED & IMPROVED) */}
                     <section className="bg-zinc-950 border-b border-white/5 py-8 px-6 relative z-20 backdrop-blur-md">
                         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
                             <div className="flex items-center gap-4 group">
@@ -91,7 +88,7 @@ export default function DigitalWarRoom() {
                             <div className="flex items-center gap-4">
                                
                                 <button 
-                                    onClick={() => navigate('/about')} 
+                                    onClick={() => navigate('/about/')} 
                                     className="relative group overflow-hidden border border-orange-600/30 px-6 py-3 rounded-none"
                                 >
                                     <span className="relative z-10 text-orange-500 font-black italic text-xs md:text-sm uppercase group-hover:text-black transition-colors">
@@ -103,15 +100,13 @@ export default function DigitalWarRoom() {
                         </div>
                     </section>
 
-                    {/* 4. MARTYRS TICKER */}
                     <Martyrs />
 
-                    {/* 5. THE DOSSIER GRID */}
                     <section className="py-24 md:py-40 px-6 max-w-7xl mx-auto">
                         <motion.div {...fadeInUp} className="mb-20 flex flex-col md:flex-row justify-between items-end gap-6 border-b border-zinc-900 pb-12">
                             <div>
                                 <h2 className="text-7xl md:text-[9vw] font-black uppercase italic tracking-tighter leading-none">
-                                    The <span className="text-zinc-800" style={{ WebkitTextStroke: '1px #3f3f46' }}>Dossier</span>
+                                    Justice <span className="text-zinc-500">AWAITED</span>
                                 </h2>
                                 <p className="text-zinc-600 text-xs md:text-sm uppercase mt-4 font-mono tracking-widest flex items-center gap-2">
                                     <Database size={14} /> Archive_Type: Systemic_Failure // Ref: 06_Records
@@ -131,10 +126,9 @@ export default function DigitalWarRoom() {
                             ))}
                         </div>
 
-                        {/* ARCHIVE GATEWAY */}
                         <motion.div 
                             {...fadeInUp}
-                            onClick={() => navigate('/archive')}
+                            onClick={() => navigate('/archive/')}
                             className="mt-32 border-2 border-dashed border-zinc-800 p-12 md:p-24 text-center group hover:border-orange-600 transition-all cursor-pointer relative overflow-hidden"
                         >
                             <div className="absolute inset-0 bg-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -149,7 +143,6 @@ export default function DigitalWarRoom() {
                         </motion.div>
                     </section>
 
-                    {/* 6. FOOTER */}
                     <section className="py-48 text-center px-6 border-t border-zinc-900/50 relative overflow-hidden">
                         <Skull className="mx-auto text-zinc-900/40 mb-10" size={100} />
                         <h4 className="text-6xl md:text-[10vw] font-black italic uppercase mb-12 leading-[0.75] tracking-tighter">

@@ -11,7 +11,6 @@ export const Footer = () => {
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
                     
-                    {/* MISSION COLUMN */}
                     <div className="space-y-6 text-center md:text-left">
                         <p className="text-2xl font-black italic tracking-tighter uppercase text-white">
                             INDIA THAT IS BHARAT
@@ -26,7 +25,6 @@ export const Footer = () => {
                         </div>
                     </div>
 
-                    {/* QUICK LINKS */}
                     <div className="flex flex-col items-center md:items-start space-y-4">
                         <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.4em] mb-2">Navigation</p>
                         <button onClick={() => navigate('/')} className="text-zinc-400 hover:text-orange-500 text-sm font-bold italic uppercase transition-colors">War_Room</button>
@@ -34,7 +32,6 @@ export const Footer = () => {
                         <button onClick={() => navigate('/archive/')} className="text-zinc-400 hover:text-orange-500 text-sm font-bold italic uppercase transition-colors">Matters Archive</button>
                     </div>
 
-                    {/* CONNECT & DEV MESSAGE */}
                     <div className="flex flex-col items-center md:items-end space-y-6">
                         <div className="text-center md:text-right">
                             <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.4em] mb-4">Network_Status</p>
@@ -57,7 +54,6 @@ export const Footer = () => {
                     </div>
                 </div>
 
-                {/* BOTTOM BAR */}
                 <div className="pt-10 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase text-center md:text-left">
                         © {currentYear} INDIA_UNCHAINED. NO RIGHTS RESERVED. JUSTICE IS PUBLIC DOMAIN.

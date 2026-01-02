@@ -5,7 +5,6 @@ import { Quote } from 'lucide-react'
 const Martyrs = () => {
     return (
         <section className="bg-zinc-950 py-20 md:py-40 overflow-hidden">
-            {/* SECTION HEADER */}
             <div className="px-8 mb-32 max-w-7xl mx-auto">
                 <div className="flex items-center gap-4 mb-4">
                     <h2 className="text-xs tracking-[1em] text-orange-600 font-black">THE_FOUNDATION</h2>
@@ -16,9 +15,9 @@ const Martyrs = () => {
                 </h3>
             </div>
 
-            {/* BOSE - THE ARCHITECT (ORANGE) */}
+            {/* BOSE  */}
             <div className="relative border-y border-white/5 group">
-                {/* Background "Ghost" Text */}
+
                 <div className="absolute top-0 left-0 text-[25vw] font-black italic text-white/[0.02] leading-none pointer-events-none select-none">
                     FREEDOM
                 </div>
@@ -46,7 +45,7 @@ const Martyrs = () => {
                 </div>
             </div>
 
-            {/* BHAGAT - THE IDEALOGUE (WHITE) */}
+            {/* BHAGAT  */}
             <div className="relative border-b border-white/5 group">
                 <div className="absolute top-0 right-0 text-[25vw] font-black italic text-white/[0.02] leading-none pointer-events-none select-none">
                     REVOLUTION
@@ -75,7 +74,7 @@ const Martyrs = () => {
                 </div>
             </div>
 
-            {/* KHUDIRAM - THE SPIRIT (GREEN) */}
+            {/* KHUDIRAM */}
             <div className="relative border-b border-white/5 group">
                 <div className="absolute bottom-0 left-0 text-[25vw] font-black italic text-white/[0.02] leading-none pointer-events-none select-none">
                     SACRIFICE
@@ -104,7 +103,6 @@ const Martyrs = () => {
                 </div>
             </div>
 
-            {/* BOTTOM TRANSITION */}
             <div className="mt-20 flex flex-col items-center">
                 <p className="text-zinc-600 text-[10px] tracking-[1.5em] font-black mb-8">AUTHENTIC_LEGACY</p>
                 <div className="flex gap-4">
