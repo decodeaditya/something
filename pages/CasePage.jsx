@@ -12,25 +12,41 @@ const CasePage = () => {
     if (!activeCase) return <div className="h-screen bg-black flex items-center justify-center font-bold text-white tracking-widest">RECORD_NOT_FOUND</div>;
 
     const sendDemandEmail = () => {
-        const subject = `INQUIRY: ${activeCase.name.toUpperCase()} [#${activeCase.id}]`;
+        const subject = `Justice for ${activeCase.name.toUpperCase()}`;
         const body = `To the Concerned Authorities,\n\nI am writing regarding the case of ${activeCase.name}.\n\nSUMMARY:\n"${activeCase.summary}"\n\nLEGAL REFERENCE:\nSections: ${activeCase.bns_section}.\n\nAs a concerned citizen, I am following the progress of this case through the Public Justice Archive. We request transparency and a timely update on the legal proceedings.\n\nJustice delayed is justice denied.`;
         window.location.href = `mailto:${activeCase.authorityEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     };
 
-    const handleShare = async () => {
-        const shareData = {
-            title: `Justice for ${activeCase.name}`,
-            text: `I just read about the "${activeCase.name}" case on the Justice Archive. We need to spread awareness.`,
-            url: window.location.href,
-        };
+   const handleShare = async () => {
         try {
-            if (navigator.share) {
+            const response = await fetch(activeCase.img);
+            const blob = await await response.blob();
+            const file = new File([blob], 'evidence.jpg', { type: 'image/jpeg' });
+
+            const shareData = {
+                title: `Justice for ${activeCase.name} | India Unchained`,
+                text: `I just read about the "${activeCase.name}" case on India Unchained. We need to spread awareness. Help us break the silence.`,
+                url: window.location.href,
+                files: [file], // This shares the actual image file
+            };
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
                 await navigator.share(shareData);
             } else {
                 await navigator.clipboard.writeText(window.location.href);
-                alert("Link copied!");
+                alert("Link copied to clipboard!");
             }
-        } catch (err) { console.log("Error sharing:", err); }
+        } catch (err) {
+            // Fallback if image fetch fails
+            navigator.share({
+                title: `Justice for ${activeCase.name} | India Unchained`,
+                text: `Help spread awareness for ${activeCase.name}.`,
+                url: window.location.href,
+            }).catch(() => {
+                navigator.clipboard.writeText(window.location.href);
+                alert("Link copied!");
+            });
+        }
     };
 
     return (
