@@ -57,7 +57,7 @@ const CaseCard = (item) => {
                     </div>
 
                     <span className="text-orange-600 flex italic items-center gap-3 text-xs md:text-sm font-black tracking-tighter group-hover:gap-6 transition-all uppercase">
-                       Access Dossier <MoveRight size={20} />
+                       Open Dossier <MoveRight size={20} />
                     </span>
                 </div>
             </div>

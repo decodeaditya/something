@@ -60,7 +60,7 @@ export const Footer = () => {
                 {/* BOTTOM BAR */}
                 <div className="pt-10 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase text-center md:text-left">
-                        © {currentYear} DIGITAL_WAR_ROOM. NO RIGHTS RESERVED. JUSTICE IS PUBLIC DOMAIN.
+                        © {currentYear} INDIA_UNCHAINED. NO RIGHTS RESERVED. JUSTICE IS PUBLIC DOMAIN.
                     </p>
                     <div className="flex items-center gap-8">
                         <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
