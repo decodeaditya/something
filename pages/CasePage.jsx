@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Mail, MoveLeft, Newspaper, Share2, Target, Scale, MapPin, ShieldCheck, CheckCircle2, Flame } from 'lucide-react';
+import { Mail, MoveLeft, Newspaper, Share2, Target, Scale, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ALL_CASES } from '../src/static/database';
 
@@ -17,112 +17,110 @@ const CasePage = () => {
         window.location.href = `mailto:${activeCase.authorityEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     };
 
+    const handleShare = async () => {
+        const shareData = {
+            title: `Justice for ${activeCase.name}`,
+            text: `I just read about the "${activeCase.name}" case on the Justice Archive. We need to spread awareness.`,
+            url: window.location.href,
+        };
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+            } else {
+                await navigator.clipboard.writeText(window.location.href);
+                alert("Link copied!");
+            }
+        } catch (err) { console.log("Error sharing:", err); }
+    };
+
     return (
         <motion.div 
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
             className="bg-[#080808] min-h-screen text-white selection:bg-orange-600 pb-20"
         >
-            {/* TRICOLOR ACCENT BAR */}
-            <div className="fixed top-55 left-0 w-full h-1 flex z-[60]">
+            {/* 1. TRICOLOR ACCENT BAR (Pinned to Top) */}
+            <div className="fixed top-0 left-0 w-full h-1.5 flex z-[100]">
                 <div className="h-full w-1/3 bg-[#FF671F]" /> 
-                <div className="h-full w-1/3 bg-white/90" />      
+                <div className="h-full w-1/3 bg-white" />      
                 <div className="h-full w-1/3 bg-[#046A38]" /> 
             </div>
 
-            {/* NAV BAR */}
-            <nav className="bg-black/80 backdrop-blur-lg border-b border-white/5 py-5 px-6 sticky top-1 z-50">
-                <div className="max-w-7xl mx-auto flex justify-between items-center">
-                    <button 
-                        onClick={() => navigate('/archive')} 
-                        className="group flex items-center gap-2 text-zinc-500 text-[10px] font-bold uppercase tracking-widest hover:text-white transition-all"
-                    >
-                        <MoveLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> 
-                        Archive Index
-                    </button>
-                    <div className="flex items-center gap-2 text-green-500/80">
-                        <ShieldCheck size={14} />
-                        <span className="text-[10px] font-bold uppercase tracking-widest">Verified Dossier</span>
-                    </div>
-                </div>
-            </nav>
-
-            <div className="max-w-7xl mx-auto px-6 pt-10 lg:pt-16">
-                <div className="grid lg:grid-cols-12 gap-12">
+            {/* 3. MAIN CONTENT (Increased padding-top to prevent overlap) */}
+            <main className="max-w-7xl mx-auto px-6 pt-32 ">
+                <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
                     
                     {/* LEFT COLUMN */}
                     <div className="lg:col-span-8">
-                        
-                        {/* CASE HEADER */}
-                        <header className="mb-10">
-                            <div className="flex items-center gap-3 mb-4">
-                                <span className="text-orange-500 font-bold text-[10px] tracking-[0.3em] uppercase">
+                        <header className="mb-12">
+                            <div className="flex items-center gap-3 mb-6">
+                                <span className="text-orange-500 font-black text-[11px] tracking-[0.4em] uppercase">
                                     {activeCase.tag}
                                 </span>
-                                <div className="h-px flex-1 bg-zinc-900" />
+                                <div className="h-[1px] flex-1 bg-zinc-800" />
                             </div>
                             
-                            <h1 className="text-6xl md:text-8xl font-black italic tracking-tighter uppercase leading-[0.9] mb-4">
+                            <h1 className="text-5xl md:text-8xl font-black italic tracking-tighter uppercase leading-[0.85] mb-6">
                                 {activeCase.name}
                             </h1>
                             
-                            <p className="text-lg md:text-xl font-bold text-zinc-400 uppercase tracking-tight max-w-2xl leading-snug italic">
+                            <p className="text-xl md:text-2xl font-bold text-zinc-400 uppercase tracking-tight max-w-2xl leading-tight italic">
                                 {activeCase.headline}
                             </p>
                         </header>
 
-                        {/* 1. VISUAL EVIDENCE */}
-                        <div className="relative mb-10 overflow-hidden rounded-sm border border-white/5">
+                        {/* COLORED IMAGE */}
+                        <div className="relative mb-14 overflow-hidden border border-white/10 shadow-2xl">
                             <img 
                                 src={activeCase.img} 
                                 alt={activeCase.name} 
-                                className="w-full transition-all duration-700 object-cover max-h-[450px]" 
+                                className="w-full h-auto object-cover max-h-[550px]" 
                             />
                         </div>
 
-                        {/* 2. THE SUMMARY (Balanced Size) */}
-                        <section className="mb-12">
-                            <div className="border-l-4 border-orange-600 pl-6">
-                                <h3 className="text-[10px] font-black text-orange-600 uppercase tracking-[0.3em] mb-3">Incident Brief</h3>
-                                <p className="text-2xl md:text-3xl font-bold italic leading-tight text-zinc-100 uppercase">
-                                    {activeCase.summary}
-                                </p>
+                        {/* SUMMARY */}
+                        <section className="mb-16">
+                            <div className="border-l-8 border-orange-600 pl-8 py-2">
+                                <h3 className="text-xs font-black text-orange-600 tracking-[0.4em] mb-4">The Incident</h3>
+                                <p className="text-2xl md:text-4xl italic text-zinc-100 tracking-tighter font-bold capitalize leading-tight">
+    {activeCase.summary}
+</p>
                             </div>
                         </section>
 
-                        {/* 3. VERIFY SOURCE (Full Story) */}
-                        <div className="mb-16">
+                        {/* FULL STORY BUTTON */}
+                        <div className="mb-20">
                             <a 
                                 href={activeCase.newsLink} 
                                 target="_blank" 
                                 rel="noreferrer" 
-                                className="flex items-center justify-between bg-zinc-100 text-black px-8 py-6 group hover:bg-green-700 hover:text-white transition-all rounded-sm"
+                                className="flex items-center justify-between bg-white text-black px-10 py-8 group hover:bg-green-700 hover:text-white transition-all duration-300"
                             >
-                                <div className="flex items-center gap-4">
-                                    <Newspaper size={24} />
-                                    <span className="text-lg font-black italic uppercase tracking-tight">Read Full Story</span>
+                                <div className="flex items-center gap-6">
+                                    <Newspaper size={32} />
+                                    <span className="text-xl md:text-2xl font-black italic uppercase tracking-tighter">Read Full Story</span>
                                 </div>
-                              
+                                <Newspaper size={32} className="text-green-700 group-hover:text-white" />
                             </a>
                         </div>
 
-                        {/* ANALYSIS GRID */}
-                        <div className="grid md:grid-cols-2 gap-8 pt-10 border-t border-zinc-900">
-                            <div className="space-y-4">
-                                <h4 className="text-orange-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
-                                    <Target size={14} /> Social Impact
+                        {/* BNS SECTION (BIG TEXT) */}
+                        <div className="pt-16 border-t border-zinc-900 grid md:grid-cols-2 gap-12">
+                            <div className="space-y-6">
+                                <h4 className="text-orange-500 text-xs font-black uppercase tracking-widest flex items-center gap-2 italic">
+                                    <Target size={18} /> Social Impact
                                 </h4>
-                                <p className="text-zinc-400 leading-relaxed italic text-lg">
+                                <p className="text-zinc-400 leading-relaxed italic text-xl font-medium">
                                     {activeCase.analysis}
                                 </p>
                             </div>
                             <div className="space-y-4">
-                                <h4 className="text-green-600 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
-                                    <Scale size={14} /> Legal Status
+                                <h4 className="text-green-600 text-[10px] font-black uppercase tracking-widest flex items-center gap-2 italic">
+                                    <Scale size={14} /> Legal Status (BNS)
                                 </h4>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-3">
                                     {activeCase.bns_section.split(',').map((s, i) => (
-                                        <span key={i} className="bg-zinc-900 px-3 py-1.5 border border-white/5 text-[15px] font-bold text-zinc-300 uppercase italic">
+                                        <span key={i} className="bg-zinc-900 px-4 py-2 border border-white/5 text-[18px] font-black text-zinc-200 uppercase italic tracking-tighter hover:text-orange-500 transition-colors">
                                             {s.trim()}
                                         </span>
                                     ))}
@@ -131,53 +129,49 @@ const CasePage = () => {
                         </div>
                     </div>
 
-                    {/* RIGHT COLUMN (Sidebar) */}
+                    {/* SIDEBAR */}
                     <aside className="lg:col-span-4">
-                        <div className="lg:sticky lg:top-32 space-y-6">
+                        <div className="lg:sticky lg:top-32 space-y-10">
                             
-                            {/* ACTION BOX */}
-                            <div className="bg-white text-black p-8 shadow-[10px_10px_0px_0px_rgba(255,103,31,1)]">
-                               
-
-                                <h3 className="text-3xl font-black italic uppercase leading-none mb-6">
-                                    Demand Accountability
+                            {/* DEMAND BOX */}
+                            <div className="bg-white text-black p-10 shadow-[15px_15px_0px_0px_rgba(234,88,12,1)]">
+                                <h3 className="text-5xl font-black italic uppercase leading-[0.75] mb-6 tracking-tighter">
+                                    Speak <br /> Up
                                 </h3>
-<p className="text-[14px] font-bold text-zinc-400 uppercase leading-relaxed mb-4">
-                                Each Time you send an mail to the concerned authority, you amplify the call for justice. Collective voices can break the silence and push for action.
-                            </p>
+                                <p className="text-sm font-bold text-zinc-500 uppercase leading-snug mb-10">
+                                    Each time you send a mail, you amplify the call for justice. Collective voices push for action.
+                                </p>
                                 <button
                                     onClick={sendDemandEmail}
-                                    className="w-full bg-black text-white p-5 flex items-center justify-between group hover:bg-orange-600 transition-all active:scale-95"
+                                    className="w-full bg-black text-white p-6 flex items-center justify-between group hover:bg-orange-600 transition-all active:scale-95"
                                 >
-                                    <span className="font-black italic uppercase tracking-tight">Send Mail</span> 
-                                    <Mail size={20} className="group-hover:translate-x-1 transition-transform" />
+                                    <span className="font-black italic uppercase text-xl">Send Mail</span> 
+                                    <Mail size={24} className="group-hover:translate-x-1 transition-transform" />
                                 </button>
                                 
-                                <div className="mt-6 flex h-1 gap-0.5">
-                                    <div className="bg-orange-600 flex-1" />
+                                <div className="mt-10 flex h-2 gap-1">
+                                    <div className="bg-[#FF671F] flex-1" />
                                     <div className="bg-zinc-200 flex-1" />
-                                    <div className="bg-green-600 flex-1" />
+                                    <div className="bg-[#046A38] flex-1" />
                                 </div>
                             </div>
 
-                            {/* COLORED SHARE */}
+                            {/* SHARE */}
                             <button 
-                                onClick={() => {
-                                    navigator.clipboard.writeText(window.location.href);
-                                    alert("LINK COPIED");
-                                }}
-                                className="w-full border-2 border-orange-600/30 p-5 flex items-center justify-between text-orange-500 hover:bg-orange-600 hover:text-white transition-all font-black italic uppercase text-[11px] tracking-widest group"
+                                onClick={handleShare}
+                                className="w-full border-4 border-orange-600 p-8 flex items-center justify-between text-orange-600 hover:bg-orange-600 hover:text-white transition-all group"
                             >
-                                Share with Others <Share2 size={18} className="group-hover:rotate-12 transition-transform" />
+                                <span className="font-black italic uppercase text-xl tracking-tighter">Share To Others</span>
+                                <Share2 size={28} className="group-hover:rotate-12 transition-transform" />
                             </button>
 
-                            <p className="text-[9px] text-zinc-600 uppercase font-bold italic text-center px-4 leading-relaxed tracking-wider">
-                                Speak up. Spread the word. Justice is a collective duty.
+                            <p className="text-xs text-zinc-600 uppercase font-black italic text-center px-4 leading-relaxed tracking-[0.2em] opacity-50">
+                                JUSTICE IS A COLLECTIVE DUTY
                             </p>
                         </div>
                     </aside>
                 </div>
-            </div>
+            </main>
         </motion.div>
     );
 }
