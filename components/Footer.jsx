@@ -30,8 +30,8 @@ export const Footer = () => {
                     <div className="flex flex-col items-center md:items-start space-y-4">
                         <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.4em] mb-2">Navigation</p>
                         <button onClick={() => navigate('/')} className="text-zinc-400 hover:text-orange-500 text-sm font-bold italic uppercase transition-colors">War_Room</button>
-                        <button onClick={() => navigate('/about')} className="text-zinc-400 hover:text-orange-500 text-sm font-bold italic uppercase transition-colors">Manifesto</button>
-                        <button onClick={() => navigate('/archive')} className="text-zinc-400 hover:text-orange-500 text-sm font-bold italic uppercase transition-colors">Matters Archive</button>
+                        <button onClick={() => navigate('/about/')} className="text-zinc-400 hover:text-orange-500 text-sm font-bold italic uppercase transition-colors">Manifesto</button>
+                        <button onClick={() => navigate('/archive/')} className="text-zinc-400 hover:text-orange-500 text-sm font-bold italic uppercase transition-colors">Matters Archive</button>
                     </div>
 
                     {/* CONNECT & DEV MESSAGE */}

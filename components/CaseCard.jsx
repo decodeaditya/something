@@ -9,7 +9,7 @@ const CaseCard = (item) => {
     return (
         <motion.div
             key={item.id}
-            onClick={() => navigate(`/case/${item.slug}`)} // Added leading slash for absolute routing
+            onClick={() => navigate(`/case/${item.slug}/`)} // Added leading slash for absolute routing
             className="group cursor-pointer border border-white/5 bg-zinc-950 hover:border-orange-600/50 transition-all duration-700 rounded-none overflow-hidden relative shadow-2xl"
             whileHover={{ y: -10 }}
         >
